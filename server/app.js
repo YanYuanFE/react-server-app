@@ -15,7 +15,7 @@ app.use('/public', express.static(path.join(__dirname, '../dist')));
 app.get('*', function (req, res) {
   const appString = ReactSSR.renderToString(serverEntry);
   
-  res.send(template.replace('<app></app>', appString));
+  res.send(template.replace('<!-- app -->', appString));
 });
 
 app.listen(3333, function () {

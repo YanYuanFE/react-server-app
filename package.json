@@ -7,6 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm run clear && npm run build:client && npm run build:server",
     "clear": "rimraf dist",
+    "dev:client": "webpack-dev-server --config build/webpack.config.dev.js",
     "build:client": "webpack --mode production --config build/webpack.config.client.js",
     "build:server": "webpack --mode production --config build/webpack.config.server.js",
     "start": "node server/app.js"
@@ -26,6 +27,8 @@
     "html-webpack-plugin": "^3.2.0",
     "rimraf": "^2.6.2",
     "webpack": "^4.15.1",
-    "webpack-cli": "^3.0.8"
+    "webpack-cli": "^3.0.8",
+    "webpack-dev-server": "^3.1.4",
+    "webpack-merge": "^4.1.3"
   }
 }
