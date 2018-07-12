@@ -10,6 +10,7 @@ class App extends Component {
     return (
       <div>
         This is SSR App1
+        <span>text</span>
       </div>
     );
   }
