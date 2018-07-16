@@ -5,6 +5,6 @@ const App = () => (
   <div>
     This is SSR App1
   </div>
-)
+);
 
 export default hot(module)(App);

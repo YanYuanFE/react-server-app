@@ -7,8 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm run clear && npm run build:client && npm run build:server",
     "clear": "rimraf dist",
-    "dev:client": "webpack-dev-server --config build/webpack.config.dev.js",
-    "dev:server": "cross-env NODE_ENV=development node server/app.js",
+    "dev:client": "webpack-dev-server --colors --profile --display-modules --config build/webpack.config.dev.js",
+    "dev:server": "nodemon server/app.js",
     "prod": "cross-env NODE_ENV=production node server/app.js",
     "build:client": "webpack --mode production --config build/webpack.config.client.js",
     "build:server": "webpack --mode production --config build/webpack.config.server.js",
@@ -22,7 +22,8 @@
     "express": "^4.16.3",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
-    "react-hot-loader": "^4.3.3"
+    "react-hot-loader": "^4.3.3",
+    "serve-favicon": "^2.5.0"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
@@ -46,6 +47,7 @@
     "http-proxy-middleware": "^0.18.0",
     "husky": "^0.14.3",
     "memory-fs": "^0.4.1",
+    "nodemon": "^1.18.2",
     "rimraf": "^2.6.2",
     "webpack": "^4.15.1",
     "webpack-cli": "^3.0.8",
