@@ -8,7 +8,7 @@ import Home from '../views/home';
 import User from '../views/user';
 
 export default () => [
-  <Route path="/" render={() => <Redirect to="/home" />} component={Home} exact />,
+  <Route path="/" render={() => <Redirect to="/home" />} exact />,
   <Route path="/home" component={Home} />,
   <Route path="/user" component={User} />,
 ];
