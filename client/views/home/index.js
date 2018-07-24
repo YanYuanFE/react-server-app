@@ -4,13 +4,23 @@ import {
   inject,
 } from 'mobx-react';
 import PropTypes from 'prop-types';
-import { AppState } from '../../store/app-state';
+import AppState from '../../store/app-state';
 
 @inject('appState') @observer
 class Home extends React.Component {
   static propTypes = {
     appState: PropTypes.instanceOf(AppState).isRequired,
   };
+
+  bootstrap() {
+    const { appState } = this.props;
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        appState.count = 3;
+        resolve(true);
+      });
+    });
+  }
 
   render() {
     const { appState } = this.props;

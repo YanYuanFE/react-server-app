@@ -7,7 +7,7 @@ import Routes from '../config/router';
 
 const App = () => (
   [
-    <div>
+    <div key="menu">
       <Link to="/home">
         首页
       </Link>
@@ -15,7 +15,7 @@ const App = () => (
         用户
       </Link>
     </div>,
-    <Routes />,
+    <Routes key="content" />,
   ]
 );
 
