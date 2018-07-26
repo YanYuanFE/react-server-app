@@ -3,9 +3,14 @@ import {
 } from 'mobx';
 
 export default class AppState {
-  @observable count = 0;
+  constructor({ count, name } = { count: 0, name: 'Jack' }) {
+    this.count = count;
+    this.name = name;
+  }
 
-  @observable name = 'Jack';
+  @observable count;
+
+  @observable name;
 
   @computed get msg() {
     return `${this.name} say count is ${this.count}`;
@@ -17,7 +22,7 @@ export default class AppState {
 
   toJson() {
     return {
-      counr: this.count,
+      count: this.count,
       name: this.name,
     };
   }

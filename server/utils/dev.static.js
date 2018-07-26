@@ -4,13 +4,15 @@ const axios = require('axios');
 const MemoryFS = require('memory-fs');
 const proxy = require('http-proxy-middleware');
 const asyncBootstrape = require('react-async-bootstrapper');
+const ejs = require('ejs');
+const serialize = require('serialize-javascript');
 const ReactDOMServer = require('react-dom/server');
 
 const serverConfig = require('../../build/webpack.config.server');
 
 const getTemplate = () => {
   return new Promise((resolve, reject) => {
-    axios.get('http://localhost:8888/public/index.html')
+    axios.get('http://localhost:8888/public/server.ejs')
       .then(res => {
         resolve(res.data);
       })
@@ -47,6 +49,7 @@ serverCompiler.watch({}, (err, stats) => {
 const getStoreState = (stores) => {
   return Object.keys(stores).reduce((result, storeName) => {
     result[storeName] = stores[storeName].toJson();
+    return result;
   }, {});
 }
 
@@ -71,7 +74,12 @@ module.exports = function (app) {
         console.log(stores.appState.count);
 
         const content = ReactDOMServer.renderToString(app);
-        res.send(template.replace('<!-- app -->', content));
+        const html = ejs.render(template, {
+          appString: content,
+          initialState: serialize(state),
+        });
+        res.send(html);
+        // res.send(template.replace('<!-- app -->', content));
       })
     })
   })
