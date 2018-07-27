@@ -21,6 +21,12 @@ const getTemplate = () => {
 }
 
 const Module = module.constructor;
+const NativeModule = require('module');
+const vm = require('vm');
+
+const getModuleFromString = (bundle, filename) => {
+  
+}
 
 const mfs = new MemoryFS();
 
