@@ -17,7 +17,7 @@ export default class AppState {
   }
 
   @action add() {
-    this.count += 1;
+    this.count += 2;
   }
 
   toJson() {
