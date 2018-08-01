@@ -7,6 +7,7 @@ const asyncBootstrape = require('react-async-bootstrapper');
 const ejs = require('ejs');
 const serialize = require('serialize-javascript');
 const ReactDOMServer = require('react-dom/server');
+const Helmet = require('react-helmet').default;
 
 const serverConfig = require('../../build/webpack.config.server');
 
@@ -25,7 +26,15 @@ const NativeModule = require('module');
 const vm = require('vm');
 
 const getModuleFromString = (bundle, filename) => {
-  
+  const m = { exports: {} };
+  const wrapper = NativeModule.wrap(bundle);
+  const script = new vm.Script(wrapper, {
+    filename: filename,
+    displayErrors: true,
+  });
+  const result = script.runInThisContext();
+  result.call(m.exports, m.exports, require, m);
+  return m;
 }
 
 const mfs = new MemoryFS();
@@ -46,8 +55,9 @@ serverCompiler.watch({}, (err, stats) => {
     serverConfig.output.filename
   )
   const bundle = mfs.readFileSync(bundlePath, 'utf-8');
-  const m = new Module();
-  m._compile(bundle, 'server.js');
+  // const m = new Module();
+  // m._compile(bundle, 'server.js');
+  const m = getModuleFromString(bundle, 'server.js');
   serverBundle = m.exports.default;
   createStoreMap = m.exports.createStoreMap;
 })
@@ -76,6 +86,7 @@ module.exports = function (app) {
           res.send();
           return;
         }
+        const helmet = Helmet.rewind();
         const state = getStoreState(stores);
         console.log(stores.appState.count);
 
@@ -83,6 +94,10 @@ module.exports = function (app) {
         const html = ejs.render(template, {
           appString: content,
           initialState: serialize(state),
+          meta: helmet.meta.toString(),
+          title: helmet.title.toString(),
+          style: helmet.style.toString(),
+          link: helmet.link.toString(),
         });
         res.send(html);
         // res.send(template.replace('<!-- app -->', content));

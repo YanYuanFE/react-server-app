@@ -4,6 +4,7 @@ import {
   inject,
 } from 'mobx-react';
 import PropTypes from 'prop-types';
+import Helmet from 'react-helmet';
 import AppState from '../../store/app-state';
 
 @inject('appState') @observer
@@ -26,6 +27,12 @@ class Home extends React.Component {
     const { appState } = this.props;
     return (
       <div>
+        <Helmet>
+          <title>
+            主页
+          </title>
+          <meta name="description" content="This is home" />
+        </Helmet>
         {appState.msg}
       </div>
     );
