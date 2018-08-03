@@ -3,6 +3,7 @@ const favicon = require('serve-favicon');
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const ReactDOMServer = require('react-dom/server');
+const serverRender = require('./utils/server.render');
 const fs = require('fs');
 const path = require('path');
 
@@ -25,23 +26,23 @@ app.use('/api', require('./utils/proxy'));
 
 app.use(favicon(path.join(__dirname, '../favicon.ico')));
 if (!isDev) {
-  const serverEntry = require('../dist/server.js').default;
+  const serverEntry = require('../dist/server.js');
   // serverEntry 是 default出的
-  const template = fs.readFileSync(path.join(__dirname, '../dist/index.html'), 'utf8');
+  const template = fs.readFileSync(path.join(__dirname, '../dist/server.ejs'), 'utf8');
   app.use('/public', express.static(path.join(__dirname, '../dist')));
 
-  app.get('*', function (req, res) {
-    const appString = ReactDOMServer.renderToString(serverEntry);
-
-    res.send(template.replace('<!-- app -->', appString));
+  app.get('*', function (req, res, next) {
+    serverRender(serverEntry, template, req, res).catch(next);
   });
 } else {
   const devStatic = require('./utils/dev.static');
   devStatic(app);
 }
 
-
-
+app.use(function (error, req, res, next) {
+  console.log(error);
+  res.status(500).send(error);
+});
 
 app.listen(3333, function () {
   console.log('server is listening on 3333');
