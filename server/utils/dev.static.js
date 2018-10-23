@@ -6,7 +6,7 @@ const proxy = require('http-proxy-middleware');
 
 const serverRender = require('./server.render');
 console.log(serverRender)
-const serverConfig = require('../../build/webpack.config.server');
+const serverConfig = require('../../config/webpack.config.server');
 
 const getTemplate = () => {
   return new Promise((resolve, reject) => {
@@ -61,7 +61,7 @@ serverCompiler.watch({}, (err, stats) => {
 module.exports = function (app) {
   app.use('/public', proxy({
     target: 'http://localhost:8888'
-  }))
+  }));
 
   app.get('*', function (req, res, next) {
     if (!serverBundle) {

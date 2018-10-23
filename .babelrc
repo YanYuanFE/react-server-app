@@ -1,8 +1,9 @@
 {
-  "presets":  ["react", "env"],
+  "presets":  ["@babel/react", "@babel/env"],
   "plugins": [
-    "transform-decorators-legacy",
-    "transform-class-properties",
-    "react-hot-loader/babel"
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    "@babel/plugin-syntax-dynamic-import",
+    ["@babel/plugin-proposal-class-properties", { "loose": true }],
+    "@babel/plugin-transform-runtime"
   ]
 }

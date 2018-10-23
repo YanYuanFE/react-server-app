@@ -5,6 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const common = require('./webpack.config.base');
 
 const isDev = process.env.NODE_ENV === 'development';
+console.log(isDev);
 
 const config = merge(common, {
   mode: 'development',

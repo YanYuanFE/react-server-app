@@ -38,14 +38,19 @@ npm i 或者 yarn install
 开发：
 
 ```bash
-npm run dev:client // 启动客户端开发环境
-npm run dev:server // 启动服务端开发环境
+#启动客户端开发环境
+npm run dev:client
+#启动服务端开发环境
+npm run dev:server 
 ```
 
 构建：
 
 ```bash
-npm run build:client // 构建客户端渲染代码
-npm run build:server // 构建服务端渲染代码
-npm start // 启动服务器
+# 构建客户端渲染代码
+npm run build:client
+# 构建服务端渲染代码
+npm run build:server
+# 启动服务器
+npm start
 ```
