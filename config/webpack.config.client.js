@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const common = require('./webpack.config.base');
 
 const isDev = process.env.NODE_ENV === 'development';
-console.log(isDev);
+console.log('isDev:', isDev);
 
 const config = merge(common, {
   mode: 'development',
@@ -23,7 +23,7 @@ const config = merge(common, {
       template: '!!ejs-compiled-loader!' + path.join(__dirname, '../client/server.template.ejs'),
       filename: 'server.ejs'
     })
-  ],
+  ]
 });
 
 if (isDev) {

@@ -6,5 +6,8 @@
       "legacyDecorators": true,
       "experimentalObjectRestSpread": true
     }
+  },
+  "rules": {
+    "semi": "off"
   }
 }

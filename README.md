@@ -38,9 +38,9 @@ npm i 或者 yarn install
 开发：
 
 ```bash
-#启动客户端开发环境
+#启动客户端开发环境 localhost:8888
 npm run dev:client
-#启动服务端开发环境
+#启动服务端开发环境 localhost:3333
 npm run dev:server 
 ```
 

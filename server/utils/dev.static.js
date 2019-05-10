@@ -5,7 +5,6 @@ const MemoryFS = require('memory-fs');
 const proxy = require('http-proxy-middleware');
 
 const serverRender = require('./server.render');
-console.log(serverRender)
 const serverConfig = require('../../config/webpack.config.server');
 
 const getTemplate = () => {
@@ -27,7 +26,7 @@ const getModuleFromString = (bundle, filename) => {
   const wrapper = NativeModule.wrap(bundle);
   const script = new vm.Script(wrapper, {
     filename: filename,
-    displayErrors: true,
+    displayErrors: true
   });
   const result = script.runInThisContext();
   result.call(m.exports, m.exports, require, m);
@@ -37,6 +36,7 @@ const getModuleFromString = (bundle, filename) => {
 const mfs = new MemoryFS();
 
 const serverCompiler = webpack(serverConfig);
+console.log(serverConfig);
 serverCompiler.outputFileSystem = mfs;
 
 let serverBundle, createStoreMap;

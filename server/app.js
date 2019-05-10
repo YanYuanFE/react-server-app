@@ -7,6 +7,7 @@ const fs = require('fs');
 const path = require('path');
 
 const isDev = process.env.NODE_ENV === 'development';
+console.log('isDev:', isDev);
 
 const app = express();
 app.use(bodyParser.json());
