@@ -36,7 +36,6 @@ const getModuleFromString = (bundle, filename) => {
 const mfs = new MemoryFS();
 
 const serverCompiler = webpack(serverConfig);
-console.log(serverConfig);
 serverCompiler.outputFileSystem = mfs;
 
 let serverBundle, createStoreMap;
@@ -55,6 +54,7 @@ serverCompiler.watch({}, (err, stats) => {
   // const m = new Module();
   // m._compile(bundle, 'server.js');
   const m = getModuleFromString(bundle, 'server.js');
+  console.log(m.exports);
   serverBundle = m.exports;
 })
 

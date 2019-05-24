@@ -32,7 +32,7 @@ git clone https://github.com/YanYuanFE/react-server-app
 
 ```bash
 #国内用户推荐yarn或者cnpm
-npm i 或者 yarn install
+npm install 或者 yarn install
 ```
 
 开发：

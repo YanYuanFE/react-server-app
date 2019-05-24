@@ -6,7 +6,7 @@ import { hot } from 'react-hot-loader';
 import Routes from '../config/router';
 
 const App = () => (
-  <>
+  <div>
     <div>
       <Link to="/home">
         首页
@@ -16,7 +16,7 @@ const App = () => (
       </Link>
     </div>
     <Routes />
-  </>
+  </div>
 );
 
 export default hot(module)(App);
