@@ -24,6 +24,7 @@
   "author": "YanYuanFE",
   "license": "MIT",
   "dependencies": {
+    "@hot-loader/react-dom": "^16.8.6",
     "axios": "^0.18.0",
     "body-parser": "^1.19.0",
     "ejs": "^2.6.1",
@@ -37,10 +38,10 @@
     "react": "^16.8.6",
     "react-async-bootstrapper": "^2.1.1",
     "react-dom": "^16.8.6",
-    "react-helmet": "^6.0.0-beta",
+    "react-helmet": "^5.2.1",
     "react-helmet-async": "^1.0.2",
     "react-hot-loader": "^4.8.8",
-    "react-router-dom": "^5.0.0",
+    "react-router-dom": "^4.3.1",
     "serialize-javascript": "^1.7.0",
     "serve-favicon": "^2.5.0"
   },

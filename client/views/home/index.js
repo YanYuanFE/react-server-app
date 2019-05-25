@@ -4,10 +4,11 @@ import {
   inject,
 } from 'mobx-react';
 import PropTypes from 'prop-types';
-import Helmet from 'react-helmet';
+import { Helmet } from 'react-helmet';
 import AppState from '../../store/app-state';
 
-@inject('appState') @observer
+@inject('appState')
+@observer
 class Home extends React.Component {
   static propTypes = {
     appState: PropTypes.instanceOf(AppState).isRequired,
@@ -33,7 +34,7 @@ class Home extends React.Component {
           </title>
           <meta name="description" content="This is home" />
         </Helmet>
-        {appState.msg}
+        {appState && appState.msg}
       </div>
     );
   }

@@ -54,7 +54,6 @@ serverCompiler.watch({}, (err, stats) => {
   // const m = new Module();
   // m._compile(bundle, 'server.js');
   const m = getModuleFromString(bundle, 'server.js');
-  console.log(m.exports);
   serverBundle = m.exports;
 })
 

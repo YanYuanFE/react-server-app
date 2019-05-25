@@ -1,3 +1,4 @@
+import 'react-hot-loader';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'mobx-react';
@@ -9,7 +10,7 @@ import AppState from './store/app-state';
 
 const initialState = window.__INITIAL__STATE__ || {}; // eslint-disable-line
 
-ReactDOM.render(
+ReactDOM.hydrate(
   <Provider appState={new AppState(initialState.appState)}>
     <Router>
       <App />
