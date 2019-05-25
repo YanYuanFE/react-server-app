@@ -5,8 +5,7 @@ const MemoryFS = require('memory-fs');
 const proxy = require('http-proxy-middleware');
 
 const serverRender = require('./server.render');
-console.log(serverRender)
-const serverConfig = require('../../build/webpack.config.server');
+const serverConfig = require('../../config/webpack.config.server');
 
 const getTemplate = () => {
   return new Promise((resolve, reject) => {
@@ -27,7 +26,7 @@ const getModuleFromString = (bundle, filename) => {
   const wrapper = NativeModule.wrap(bundle);
   const script = new vm.Script(wrapper, {
     filename: filename,
-    displayErrors: true,
+    displayErrors: true
   });
   const result = script.runInThisContext();
   result.call(m.exports, m.exports, require, m);
@@ -55,13 +54,14 @@ serverCompiler.watch({}, (err, stats) => {
   // const m = new Module();
   // m._compile(bundle, 'server.js');
   const m = getModuleFromString(bundle, 'server.js');
+  console.log(m.exports);
   serverBundle = m.exports;
 })
 
 module.exports = function (app) {
   app.use('/public', proxy({
     target: 'http://localhost:8888'
-  }))
+  }));
 
   app.get('*', function (req, res, next) {
     if (!serverBundle) {

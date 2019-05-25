@@ -15,7 +15,10 @@ module.exports = (bundle, template, req, res) => {
   return new Promise((resolve, reject) => {
     const createStoreMap = bundle.createStoreMap;
     const createApp = bundle.default;
-    const routerContext = {};
+    console.log(JSON.stringify(createApp));
+    const routerContext = {
+      app: 'server'
+    };
 
     const stores = createStoreMap();
     const app = createApp(stores, routerContext, req.url);

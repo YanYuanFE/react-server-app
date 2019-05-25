@@ -35,6 +35,7 @@ build/Release
 
 # IDE specifics
 .idea
+.vscode
 
 # temp files
 .tmp
