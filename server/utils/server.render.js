@@ -9,16 +9,14 @@ const getStoreState = (stores) => {
     result[storeName] = stores[storeName].toJson();
     return result;
   }, {});
-}
+};
 
 module.exports = (bundle, template, req, res) => {
   return new Promise((resolve, reject) => {
     const createStoreMap = bundle.createStoreMap;
     const createApp = bundle.default;
-    console.log(JSON.stringify(createApp));
-    const routerContext = {
-      app: 'server'
-    };
+    // console.dir(bundle.default.toString())
+    const routerContext = {};
 
     const stores = createStoreMap();
     const app = createApp(stores, routerContext, req.url);
@@ -31,7 +29,6 @@ module.exports = (bundle, template, req, res) => {
       }
       const helmet = Helmet.rewind();
       const state = getStoreState(stores);
-      console.log(stores.appState.count);
 
       const content = ReactDOMServer.renderToString(app);
       const html = ejs.render(template, {
