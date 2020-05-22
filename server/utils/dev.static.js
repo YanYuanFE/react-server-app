@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 const axios = require('axios');
 const MemoryFS = require('memory-fs');
-const proxy = require('http-proxy-middleware');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 
 const serverRender = require('./server.render');
 const serverConfig = require('../../config/webpack.config.server');
@@ -59,7 +59,7 @@ serverCompiler.watch({}, (err, stats) => {
 })
 
 module.exports = function (app) {
-  app.use('/public', proxy({
+  app.use('/public', createProxyMiddleware({
     target: 'http://localhost:8888'
   }));
 

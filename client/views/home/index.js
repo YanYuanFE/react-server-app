@@ -3,15 +3,15 @@ import {
   observer,
   inject,
 } from 'mobx-react';
-import PropTypes from 'prop-types';
-import Helmet from 'react-helmet';
-import AppState from '../../store/app-state';
+// import PropTypes from 'prop-types';
+import { Helmet } from 'react-helmet';
+// import AppState from '../../store/app-state';
 
 @inject('appState') @observer
 class Home extends React.Component {
-  static propTypes = {
-    appState: PropTypes.instanceOf(AppState).isRequired,
-  };
+  // static propTypes = {
+  //   appState: PropTypes.instanceOf(AppState).isRequired,
+  // };
 
   bootstrap() {
     const { appState } = this.props;
