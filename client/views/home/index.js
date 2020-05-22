@@ -3,15 +3,9 @@ import {
   observer,
   inject,
 } from 'mobx-react';
-<<<<<<< HEAD
 // import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
 // import AppState from '../../store/app-state';
-=======
-import PropTypes from 'prop-types';
-import { Helmet } from 'react-helmet';
-import AppState from '../../store/app-state';
->>>>>>> 1dec01e30d0ddcdcea1cbd112bb862538af4300d
 
 @inject('appState')
 @observer
