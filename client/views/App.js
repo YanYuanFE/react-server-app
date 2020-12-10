@@ -2,7 +2,6 @@ import React from 'react';
 import {
   Link,
 } from 'react-router-dom';
-import { hot } from 'react-hot-loader/root';
 import Routes from '../config/router';
 
 const App = () => (
@@ -19,4 +18,4 @@ const App = () => (
   </div>
 );
 
-export default hot(App);
+export default App;

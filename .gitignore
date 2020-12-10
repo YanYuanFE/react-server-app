@@ -1,44 +1,21 @@
-# Logs
-logs
-*.log
-
-# Coverage directory used by tools like istanbul
-coverage
-
-# node-waf configuration
-.lock-wscript
-
-# Dependency directory
-# https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
-node_modules
-
-# Node.JS specifics
-pids
-lib-cov
-*.seed
-*.csv
-*.dat
-*.out
-*.pid
-*.gz
-
-results
-
-# MacOSX specifics
 .DS_Store
+node_modules
+/dist
 
-# Build artifacts
-tmp
-bower_components
-.sass-cache
-build/Release
+# local env files
+.env.local
+.env.*.local
 
-# IDE specifics
-.idea/
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.idea
 .vscode
-
-# temp files
-.tmp
-mock
-dist
-build
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?

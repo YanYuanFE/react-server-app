@@ -1,32 +1,24 @@
 import React from 'react';
-import {
-  observer,
-  inject,
-} from 'mobx-react';
-// import PropTypes from 'prop-types';
 import { Helmet } from 'react-helmet';
-// import AppState from '../../store/app-state';
+import { Async } from 'react-async';
+import Counter from './Counter';
 
-@inject('appState')
-@observer
-class Home extends React.Component {
-  // static propTypes = {
-  //   appState: PropTypes.instanceOf(AppState).isRequired,
-  // };
-
-  bootstrap() {
-    const { appState } = this.props;
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        appState.count = 3;
-        resolve(true);
-      });
+const fetchPerson = async () => {
+  const response = await new Promise((resolve) => {
+    setTimeout(() => {
+      resolve(3);
     });
-  }
+  });
+  if (!response) throw new Error();
+  return response;
+};
 
-  render() {
-    const { appState } = this.props;
-    return (
+const Home = ({ count }) => {
+  return (
+    <Async promiseFn={fetchPerson} initialValue={count}>
+      <Async.Pending>Loading...</Async.Pending>
+      <Async.Rejected>{(error) => <div>{error}</div>}</Async.Rejected>
+      <Async.Fulfilled>{(data) => <div>{data}</div>}</Async.Fulfilled>
       <div>
         <Helmet>
           <title>
@@ -34,10 +26,16 @@ class Home extends React.Component {
           </title>
           <meta name="description" content="This is home" />
         </Helmet>
-        {appState && appState.msg}
+        <Counter />
       </div>
-    );
-  }
-}
+    </Async>
+  );
+};
+
+Home.getInitialProps = async (props) => {
+  console.log(props);
+  const count = await fetchPerson();
+  return { count };
+};
 
 export default Home;

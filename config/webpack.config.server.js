@@ -1,5 +1,5 @@
 const path = require('path');
-const merge = require('webpack-merge');
+const { merge } = require('webpack-merge');
 const common = require('./webpack.config.base');
 
 module.exports = merge(common, {
@@ -15,14 +15,14 @@ module.exports = merge(common, {
   externals: Object.keys(require('../package.json').dependencies),
   module: {
     rules: [
-      {
-        enforce: 'pre',
-        test: /.(js|jsx)$/,
-        loader: 'eslint-loader',
-        exclude: [
-          path.resolve(__dirname, '../node_modules')
-        ]
-      },
+      // {
+      //   enforce: 'pre',
+      //   test: /\.(js|jsx)$/,
+      //   loader: 'eslint-loader',
+      //   exclude: [
+      //     path.resolve(__dirname, '../node_modules')
+      //   ]
+      // },
       {
         test: /.js$/,
         exclude: [
