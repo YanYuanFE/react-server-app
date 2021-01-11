@@ -10,12 +10,12 @@
 *  React
 *  Mobx
 *  express
-*  Webpack 4.x
+*  Webpack 5.x
 
 ## 特性
-*  :gem: 基于React16.x。
+*  :gem: 基于React17.x。
 *  :airplane: 基于Mobx轻量级状态管理。
-*  :rocket: 基于Webpack4.x本地调试和构建，热更新。
+*  :rocket: 基于Webpack5.x本地调试和构建，热更新。
 *  :coffee: 支持开发环境下的SSR调试。
 *  :triangular_ruler: ESLint && husky统一代码规范。
 
@@ -41,7 +41,7 @@ npm install 或者 yarn install
 #启动客户端开发环境 localhost:8888
 npm run dev:client
 #启动服务端开发环境 localhost:3333
-npm run dev:server 
+npm run dev:server
 ```
 
 构建：
